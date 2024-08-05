@@ -7,8 +7,9 @@ class AbstractEmployee {
 };
 
 class Employee:AbstractEmployee {
-private:
+protected:
     string Name;
+private:
     string Company;
     int Age;
 
@@ -48,6 +49,10 @@ public:
         else
             std::cout<<Name<<" ... sorry No promotion for you!"<<std::endl;
     }
+    //Polymorphisim
+    virtual void Work(){
+        std::cout<<Name<<" is just thinking ... "<<std::endl;
+    }
 };
 
 class Developer : public Employee {
@@ -59,21 +64,34 @@ public:
         FavProgLan = favProLan;
     }
     void FixBog(){
-        std::cout<<getName()<<" is fix the issue with "<<FavProgLan<<std::endl;
+        std::cout<<Name<<" is fix the issue with "<<FavProgLan<<std::endl;
+    }
+    void Work(){
+        std::cout<<Name<<" is writing "<<FavProgLan<<std::endl;
+    }
+};
+class Teacher : public Employee {
+public:
+    string Subject;
+    // Constructor
+    Teacher(string name, string company, int age, string subject)
+        :Employee(name, company, age)
+    {
+        Subject = subject;
+    }
+    void Work(){
+        std::cout<<Name<<" is teaching "<<Subject<<std::endl;
     }
 };
 
 int main()
 {
 
-    Employee employee_1 = Employee("Antonio", "DDS", 25);
-    Employee employee_2 = Employee("Andres", "DDS", 36);
+    Developer d = Developer ("Selena", "DDS", 25, "C++");
+    Teacher t = Teacher("John", "Capra",45, "History");
 
-    employee_1.AskForPromotion();
-    employee_2.AskForPromotion();
+    d.Work();
+    t.Work();
 
-    Developer dev = Developer ("Selena", "DDS", 25, "C++");
-    dev.FixBog();
-    dev.IntroduceYourself();
     
  }
