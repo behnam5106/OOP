@@ -50,6 +50,19 @@ public:
     }
 };
 
+class Developer : public Employee {
+public:
+    string FavProgLan;
+    Developer(string name, string company, int age, string favProLan)
+        :Employee(name, company, age)
+    {
+        FavProgLan = favProLan;
+    }
+    void FixBog(){
+        std::cout<<getName()<<" is fix the issue with "<<FavProgLan<<std::endl;
+    }
+};
+
 int main()
 {
 
@@ -58,8 +71,9 @@ int main()
 
     employee_1.AskForPromotion();
     employee_2.AskForPromotion();
+
+    Developer dev = Developer ("Selena", "DDS", 25, "C++");
+    dev.FixBog();
+    dev.IntroduceYourself();
     
-
-
-
  }
